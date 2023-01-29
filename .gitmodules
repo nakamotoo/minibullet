@@ -1,0 +1,3 @@
+[submodule "roboverse/assets"]
+	path = roboverse/assets
+	url = https://github.com/nakamotoo/pybullet_meshes.git
