@@ -1058,6 +1058,22 @@ ENVIRONMENT_SPECS = (
                    'container_name': 'bowl_small',
                    }
     },
+        {
+        'id': 'PutBallintoBowlFixed-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('ball', 'jar'),
+                   'object_scales': (0.7, 0.7),
+                   'target_object': 'ball',
+                   'load_tray': False,
+                   'object_position_low': (.54, .22, -.30),
+                   'object_position_high': (.54, .22, -.30),
+                   'container_name': 'bowl_small',
+                    'fixed_container_position': True,
+                   }
+    },
     {
         'id': 'PutBallintoBowlCamera-v0',
         'entry_point': 'roboverse.envs.random_camera_view:Widow250MultViewPickPlaceEnv',
