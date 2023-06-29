@@ -15,7 +15,6 @@ def bin_sort_hash(obj_name):
     else:
         assert False
 
-
 class Widow250BinSortEnv(Widow250Env):
     
     def __init__(self,
@@ -29,13 +28,20 @@ class Widow250BinSortEnv(Widow250Env):
                  obj_scale_default=0.75,
                  obj_orientation_default=(0, 0, 1, 0),
                  trunc=0,
+                 specific_task_id=False,
+                 desired_task_id=(0,0),
                  **kwargs):
         
-        self.rand_obj = rand_obj
-        if rand_obj:
+        if specific_task_id:
+            self.num_objects = len(desired_task_id)
+        elif rand_obj:
             self.num_objects = num_objects
         else:
             self.num_objects = 2
+            
+        self.rand_obj = rand_obj
+        self.specific_task_id = specific_task_id
+        self.desired_task_id = desired_task_id
 
         self.bin_obj = bin_obj
         self.trunc = max(min(trunc, len(BIN_SORT_OBJECTS)), self.num_objects)
@@ -45,7 +51,9 @@ class Widow250BinSortEnv(Widow250Env):
         kwargs['object_scales'] = [obj_scale_default] * self.num_objects
         kwargs['object_orientations'] = [obj_orientation_default] * self.num_objects
 
-        if rand_obj:
+        if specific_task_id:
+            kwargs['object_names'] = tuple([BIN_SORT_OBJECTS[x] for x in desired_task_id])
+        elif rand_obj:
             if self.trunc == 0:
                 kwargs['object_names'] = tuple(np.random.choice(BIN_SORT_OBJECTS, size=self.num_objects, replace=False))
             else:
@@ -91,6 +99,7 @@ class Widow250BinSortEnv(Widow250Env):
 
         self.place_success_height_threshold = container_config['place_success_height_threshold']
         self.place_success_radius_threshold = container_config['place_success_radius_threshold']
+        
         
         kwargs['target_object'] = np.random.choice(kwargs['object_names'])
         kwargs['camera_distance'] = 0.4
@@ -148,7 +157,9 @@ class Widow250BinSortEnv(Widow250Env):
             bullet.step_simulation(self.num_sim_steps_reset)
     
     def reset(self):
-        if self.rand_obj:
+        if self.specific_task_id:
+            self.object_names = tuple([BIN_SORT_OBJECTS[x] for x in self.desired_task_id])
+        elif self.rand_obj:
             if self.trunc == 0:
                 self.object_names = tuple(np.random.choice(BIN_SORT_OBJECTS, size=self.num_objects, replace=False))
             else:
