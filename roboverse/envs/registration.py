@@ -1296,6 +1296,76 @@ ENVIRONMENT_SPECS = (
                    'terminate_on_success': False
                    }
     },
+    {
+        'id': 'Putbullet_vaseintoBowlDiverseTwoDistractors-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('bullet_vase', 't_cup', 'pepsi_bottle'),
+                   'object_scales': (-1, -1, -1),
+                   'target_object': 'bullet_vase',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                    'object_orientations': ((0, 0, 1, 0), (0, 0, 1, 0), (0, 0, 1, 0)),
+
+                   'container_name': 'bowl_small',
+                   'config_type': 'diverse',
+                   }
+    },
+    {
+        'id': 'Putglass_half_gallonintoBowlDiverseTwoDistractors-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('glass_half_gallon', 'flat_bottom_sack_vase', 'beehive_funnel'),
+                   'object_scales': (-1, -1, -1),
+                   'target_object': 'glass_half_gallon',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                    'object_orientations': ((0, 0, 1, 0), (0, 0, 1, 0), (0, 0, 1, 0)),
+
+                   'container_name': 'bowl_small',
+                   'config_type': 'diverse',
+                   }
+    },
+    {
+        'id': 'PutT_cupintoBowlDiverseTwoDistractors-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('t_cup', 'ball', 'toilet_bowl'),
+                   'object_scales': (-1, -1, -1),
+                   'target_object': 't_cup',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                    'object_orientations': ((0, 0, 1, 0), (0, 0, 1, 0), (0, 0, 1, 0)),
+                   'container_name': 'bowl_small',
+                   'config_type': 'diverse',
+                   }
+    },
+    {
+        'id': 'Putcolunnade_topintoBowlDiverseTwoDistractors-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('colunnade_top', 'aero_cylinder', 'hex_deep_bowl'),
+                   'object_scales': (-1, -1, -1),
+                   'target_object': 'colunnade_top',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                    'object_orientations': ((0, 0, 1, 0), (0, 0, 1, 0), (0, 0, 1, 0)),
+                   'container_name': 'bowl_small',
+                   'config_type': 'diverse',
+                   }
+    },
 )
 
 

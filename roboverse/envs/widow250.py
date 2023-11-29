@@ -7,6 +7,7 @@ from roboverse.envs import objects
 from roboverse.bullet import object_utils
 # from .multi_object import MultiObjectEnv
 from roboverse.envs.multi_object import MultiObjectEnv
+from roboverse.assets.shapenet_object_lists import OBJECT_SCALINGS
 
 END_EFFECTOR_INDEX = 8
 RESET_JOINT_VALUES = [1.57, -0.6, -0.6, 0, -1.57, 0., 0., 0.036, -0.036]
@@ -113,7 +114,7 @@ class Widow250Env(gym.Env, Serializable):
         for orientation, object_scale, object_name in \
                 zip(object_orientations, object_scales, self.object_names):
             self.object_orientations[object_name] = orientation
-            self.object_scales[object_name] = object_scale
+            self.object_scales[object_name] = object_scale if object_scale > 0 else OBJECT_SCALINGS[object_name]
 
         self.in_vr_replay = in_vr_replay
         self._load_meshes()
