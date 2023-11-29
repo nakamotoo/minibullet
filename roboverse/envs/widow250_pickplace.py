@@ -67,13 +67,14 @@ class Widow250PickPlaceEnv(Widow250Env):
         assert self.container_position_low[2] == self.object_position_low[2]
 
         if not self.in_vr_replay:
-            if self.num_objects == 2:
+            if self.num_objects >= 2:
                 self.container_position, self.original_object_positions = \
                     object_utils.generate_object_positions_v2(
                         self.object_position_low, self.object_position_high,
                         self.container_position_low, self.container_position_high,
                         min_distance_small_obj=0.07,
                         min_distance_large_obj=self.min_distance_from_object,
+                        num_small_obj=self.num_objects
                     )
             elif self.num_objects == 1:
                 self.container_position, self.original_object_positions = \

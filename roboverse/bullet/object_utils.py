@@ -100,7 +100,7 @@ def generate_object_positions_single(
 def generate_object_positions_v2(
         small_object_position_low, small_object_position_high,
         large_object_position_low, large_object_position_high,
-        min_distance_small_obj=0.07, min_distance_large_obj=0.1):
+        min_distance_small_obj=0.07, min_distance_large_obj=0.1, num_small_obj=2):
 
     valid = False
     max_attempts = MAX_ATTEMPTS_TO_GENERATE_OBJECT_POSITIONS
@@ -111,16 +111,26 @@ def generate_object_positions_v2(
         # large_object_position = np.reshape(large_object_position, (1, 3))
 
         small_object_positions = []
-        for _ in range(2):
+        for _ in range(num_small_obj):
             small_object_position = np.random.uniform(
                 low=small_object_position_low, high=small_object_position_high)
             small_object_positions.append(small_object_position)
 
-        valid_1 = np.linalg.norm(small_object_positions[0] - small_object_positions[1]) > min_distance_small_obj
-        valid_2 = np.linalg.norm(small_object_positions[0] - large_object_position) > min_distance_large_obj
-        valid_3 = np.linalg.norm(small_object_positions[1] - large_object_position) > min_distance_large_obj
+        # check small object distance
+        valid_1 = False
+        for i in range(num_small_obj):
+            for j in range(num_small_obj):
+                if i != j:
+                    valid_1 = valid_1 or np.linalg.norm(small_object_positions[i] - small_object_positions[j]) > min_distance_small_obj
+        # valid_1 = np.linalg.norm(small_object_positions[0] - small_object_positions[1]) > min_distance_small_obj
+        # check small-large object distance
+        valid_2 = False
+        for i in range(num_small_obj):
+            valid_2 = valid_2 or np.linalg.norm(small_object_positions[i] - large_object_position) > min_distance_large_obj
+        # valid_2 = np.linalg.norm(small_object_positions[0] - large_object_position) > min_distance_large_obj
+        # valid_3 = np.linalg.norm(small_object_positions[1] - large_object_position) > min_distance_large_obj
 
-        valid = valid_1 and valid_2 and valid_3
+        valid = valid_1 and valid_2
         if i > max_attempts:
             raise ValueError('Min distance could not be assured')
 

@@ -24,7 +24,6 @@ class MultiObjectEnv:
             chosen_obj_idx = np.random.randint(0, len(self.possible_objects),
                                                size=self.num_objects)
             self.object_names = tuple(self.possible_objects[chosen_obj_idx])
-
         self.object_scales = dict()
         self.object_orientations = dict()
         for object_name in self.object_names:
