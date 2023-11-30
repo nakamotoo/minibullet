@@ -117,16 +117,16 @@ def generate_object_positions_v2(
             small_object_positions.append(small_object_position)
 
         # check small object distance
-        valid_1 = False
+        valid_1 = True
         for i in range(num_small_obj):
             for j in range(num_small_obj):
                 if i != j:
-                    valid_1 = valid_1 or np.linalg.norm(small_object_positions[i] - small_object_positions[j]) > min_distance_small_obj
+                    valid_1 = valid_1 and np.linalg.norm(small_object_positions[i] - small_object_positions[j]) > min_distance_small_obj
         # valid_1 = np.linalg.norm(small_object_positions[0] - small_object_positions[1]) > min_distance_small_obj
         # check small-large object distance
-        valid_2 = False
+        valid_2 = True
         for i in range(num_small_obj):
-            valid_2 = valid_2 or np.linalg.norm(small_object_positions[i] - large_object_position) > min_distance_large_obj
+            valid_2 = valid_2 and np.linalg.norm(small_object_positions[i] - large_object_position) > min_distance_large_obj
         # valid_2 = np.linalg.norm(small_object_positions[0] - large_object_position) > min_distance_large_obj
         # valid_3 = np.linalg.norm(small_object_positions[1] - large_object_position) > min_distance_large_obj
 
