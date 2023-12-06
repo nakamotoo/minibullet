@@ -1366,6 +1366,37 @@ ENVIRONMENT_SPECS = (
                    'config_type': 'diverse',
                    }
     },
+    {
+        'id': 'PutBallintoBowlDiverseTwoDistractors-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+
+                   'object_names': ('ball', 'jar', 'beer_bottle'),
+                   'object_scales': (0.7, 0.7, 0.65),
+                   'target_object': 'ball',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                    'object_orientations': ((0, 0, 1, 0), (0, 0, 1, 0), (0, 0, 1, 0)),
+                   'container_name': 'bowl_small',
+                   'config_type': 'diverse',
+                   }
+    },
+    {
+        'id': 'PutBallintoBowlDiverseBallPosition-v0',
+        'entry_point': 'roboverse.envs.widow250_pickplace:Widow250PickPlaceEnv',
+        'kwargs': {'reward_type': 'pick_place',
+                   'control_mode': 'discrete_gripper',
+                   'object_names': ('ball', ),
+                   'object_scales': (0.7, ),
+                   'target_object': 'ball',
+                   'load_tray': False,
+                   'object_position_low': (.47, .15, -.30),
+                   'object_position_high': (.69, .3, -.30),
+                   'container_name': 'bowl_small',
+                   }
+    },
 )
 
 
