@@ -88,12 +88,12 @@ class Widow250PickPlaceEnv(Widow250Env):
 
         # TODO(avi) Need to clean up
         self.container_position[-1] = self.container_position_z
-        print('Container position:', self.container_position)
+        # print('Container position:', self.container_position)
 
 
         self.x_diff = self.container_position_high[0] - self.container_position[0]
         self.iscontainerleft = abs(self.x_diff) < 0.1
-        print('LEFT:', self.iscontainerleft)
+        # print('LEFT:', self.iscontainerleft)
         self.container_id = object_utils.load_object(self.container_name,
                                                      self.container_position,
                                                      self.container_orientation,
